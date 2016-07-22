@@ -1,0 +1,4 @@
+name: CraplezzApi
+main: me.mani.clapi.bungee.PluginMain
+version: 1.0
+author: Overload

@@ -12,6 +12,7 @@ public abstract class Server {
     private ClientAcceptor clientAcceptor;
 
     public Server(int port) {
+        this.port = port;
         clientAcceptor = new ClientAcceptor(this);
         clientAcceptor.start();
     }

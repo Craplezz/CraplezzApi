@@ -1,4 +1,4 @@
-package me.mani.clapi.music.data;
+package me.mani.clapi.http.music.data;
 
 import com.google.gson.annotations.SerializedName;
 

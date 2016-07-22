@@ -1,4 +1,4 @@
-package me.mani.clapi.music;
+package me.mani.clapi.http.music;
 
 /**
  * Created by Schuckmann on 12.05.2016.

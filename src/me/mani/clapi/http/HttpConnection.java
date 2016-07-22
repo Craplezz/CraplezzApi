@@ -1,7 +1,7 @@
 package me.mani.clapi.http;
 
 import com.google.gson.Gson;
-import me.mani.clapi.music.MusicRequests;
+import me.mani.clapi.http.music.MusicRequests;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;

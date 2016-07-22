@@ -1,4 +1,4 @@
-package me.mani.clapi.music;
+package me.mani.clapi.http.music;
 
 import com.google.gson.JsonObject;
 import me.mani.clapi.http.HttpConnection;

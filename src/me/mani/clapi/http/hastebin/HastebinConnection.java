@@ -1,4 +1,4 @@
-package me.mani.clapi.hastebin;
+package me.mani.clapi.http.hastebin;
 
 import com.google.gson.JsonObject;
 import me.mani.clapi.http.HttpConnection;

@@ -1,12 +1,12 @@
-package me.mani.clapi.music;
+package me.mani.clapi.http.music;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import me.mani.clapi.http.HttpConnection;
 import me.mani.clapi.logger.Logger;
-import me.mani.clapi.music.data.Instance;
-import me.mani.clapi.music.data.Playlist;
-import me.mani.clapi.music.data.Track;
+import me.mani.clapi.http.music.data.Instance;
+import me.mani.clapi.http.music.data.Playlist;
+import me.mani.clapi.http.music.data.Track;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.entity.ContentType;
 

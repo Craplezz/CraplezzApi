@@ -12,6 +12,7 @@ public abstract class PacketStream implements Consumer<Packet> {
 	private short length;
 	
 	public void write(byte b) {
+		System.out.println("RECEIVED DATA PIECE (" + b + ")");
 		try {
 			buffer.put(b);
 			if (!dataMode && ++count == 2) {

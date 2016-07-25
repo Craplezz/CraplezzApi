@@ -79,4 +79,7 @@ public class ClientConnection {
 		socket.close();
 	}
 
+	public Socket getSocket() {
+		return socket;
+	}
 }

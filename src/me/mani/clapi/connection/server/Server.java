@@ -21,6 +21,10 @@ public abstract class Server {
         return port;
     }
 
+    public ClientAcceptor getClientAcceptor() {
+        return clientAcceptor;
+    }
+
     public void onClientConnect(ClientConnection clientConnection) {}
 
     public void onClientDisconnect(ClientConnection clientConnection) {}

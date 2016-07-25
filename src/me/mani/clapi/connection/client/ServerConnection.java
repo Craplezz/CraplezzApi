@@ -78,5 +78,8 @@ public class ServerConnection {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public Socket getSocket() {
+		return socket;
+	}
 }

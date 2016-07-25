@@ -63,7 +63,7 @@ public class ClientConnection {
 	public void sendPacket(Packet packet) {
 		ByteBuffer packetBuffer = packet.toBuffer();
 		ByteBuffer totalBuffer = ByteBuffer.allocate(packetBuffer.capacity() + 3);
-		totalBuffer.putShort((short) packetBuffer.capacity()).put(packet.getPacketId()).put(packetBuffer);
+		totalBuffer.putShort((short) (packetBuffer.capacity() + 1)).put(packet.getPacketId()).put(packetBuffer);
 		try {
 			outputWriter.write(totalBuffer.array());
 		} catch (IOException e) {

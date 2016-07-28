@@ -38,7 +38,7 @@ public class ClientConnection {
 				}
 				
 			};
-			try {
+			try (Socket ignored = this.socket) {
 				byte b;
 				while ((b = (byte) inputReader.read()) != -1) {
 					packetStream.write(b);
@@ -46,13 +46,6 @@ public class ClientConnection {
 			}
 			catch (IOException e) {
 				e.printStackTrace();
-			}
-			finally {
-				try {
-					closeConnection();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 			}
 
 			server.onClientDisconnect(this);
@@ -62,6 +55,7 @@ public class ClientConnection {
 	public void sendPacket(Packet packet) {
 		try {
 			outputWriter.write(packet.toBuffer().array());
+			outputWriter.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -69,10 +63,6 @@ public class ClientConnection {
 
 	private void handlePacket(Packet packet) {
 		server.onPacketRecieve(this, packet);
-	}
-
-	private void closeConnection() throws IOException {
-		socket.close();
 	}
 
 	public Socket getSocket() {

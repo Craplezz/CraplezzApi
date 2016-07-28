@@ -1,33 +1,27 @@
 package me.mani.clapi.connection.packet;
 
 import java.nio.BufferUnderflowException;
-import java.nio.ByteBuffer;
 import java.util.function.Consumer;
 
 public abstract class PacketStream implements Consumer<Packet> {
 
-	private boolean dataMode;
-	private ByteBuffer buffer = ByteBuffer.allocate(2);
-	private short count;
-	private short length;
+	private PacketBuilder packetBuilder;
 	
 	public void write(byte b) {
 		try {
-			buffer.put(b);
-			if (!dataMode && ++count == 2) {
-				buffer.position(0);
-				length = buffer.getShort();
-				buffer = ByteBuffer.allocate(length);
-				dataMode = true;
+			if (packetBuilder == null) {
+				packetBuilder = PacketBuilder.id(b);
 			}
-			else if (this.buffer.position() == length) {
-				buffer.position(0);
-				accept(PacketSerializer.createPacket(buffer));
-					
-				// Reset
-				buffer = ByteBuffer.allocate(2);
-				count = 0;
-				dataMode = false;
+			else if (packetBuilder instanceof PacketBuilder.IdentifiedEmptyPacket) {
+				if (packetBuilder.put(b)) {
+					packetBuilder = ((PacketBuilder.IdentifiedEmptyPacket) packetBuilder).next();
+				}
+			}
+			else if (packetBuilder instanceof PacketBuilder.IdentifiedPacket) {
+				if (packetBuilder.put(b)) {
+					accept(((PacketBuilder.IdentifiedPacket) packetBuilder).create());
+					packetBuilder = null;
+				}
 			}
 		}
 		catch (BufferUnderflowException e) {

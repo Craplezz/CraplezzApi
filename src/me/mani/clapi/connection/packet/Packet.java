@@ -17,7 +17,14 @@ public abstract class Packet {
 	}
 
 	public abstract byte getPacketId();
-	
-	public abstract ByteBuffer toBuffer();
+
+	public ByteBuffer toBuffer() {
+		ByteBuffer packetBuffer = internalToBuffer();
+		ByteBuffer byteBuffer = ByteBuffer.allocate(3 + packetBuffer.capacity());
+		byteBuffer.put(getPacketId()).putShort((short) packetBuffer.capacity()).put(byteBuffer);
+		return byteBuffer;
+	}
+
+	protected abstract ByteBuffer internalToBuffer();
 	
 }

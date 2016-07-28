@@ -5,9 +5,9 @@ import java.nio.ByteBuffer;
 
 public class PacketSerializer {
 
-	public static Packet createPacket(ByteBuffer buffer) {
+	public static Packet createPacket(byte packetId, ByteBuffer data) {
 		try {
-			return Packet.getPacket(buffer.get()).getConstructor(ByteBuffer.class).newInstance(buffer);
+			return Packet.getPacket(packetId).getConstructor(ByteBuffer.class).newInstance(data);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 		}

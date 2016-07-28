@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -61,11 +60,8 @@ public class ClientConnection {
 	}
 	
 	public void sendPacket(Packet packet) {
-		ByteBuffer packetBuffer = packet.toBuffer();
-		ByteBuffer totalBuffer = ByteBuffer.allocate(packetBuffer.capacity() + 3);
-		totalBuffer.putShort((short) (packetBuffer.capacity() + 1)).put(packet.getPacketId()).put(packetBuffer);
 		try {
-			outputWriter.write(totalBuffer.array());
+			outputWriter.write(packet.toBuffer().array());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

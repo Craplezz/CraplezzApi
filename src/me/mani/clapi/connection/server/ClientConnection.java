@@ -46,6 +46,7 @@ public class ClientConnection {
 					System.out.println("RECEIVED " + b);
 					packetStream.write(b);
 				}
+				System.out.println("End of stream");
 			}
 			catch (IOException e) {
 				e.printStackTrace();

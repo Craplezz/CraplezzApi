@@ -21,7 +21,6 @@ public abstract class Packet {
 	public final ByteBuffer toBuffer() {
 		ByteBuffer packetBuffer = internalToBuffer();
 		ByteBuffer byteBuffer = ByteBuffer.allocate(3 + packetBuffer.position());
-		System.out.println("Buffer position: " + packetBuffer.position());
 		byteBuffer.put(getPacketId()).putShort((short) packetBuffer.position()).put(packetBuffer);
 		return byteBuffer;
 	}

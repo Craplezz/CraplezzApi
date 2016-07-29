@@ -59,6 +59,7 @@ public abstract class PacketBuilder {
 
         @Override
         public boolean put(byte b) {
+            System.out.println("Putting data: " + b);
             data.put(b);
             return data.capacity() <= data.position();
         }

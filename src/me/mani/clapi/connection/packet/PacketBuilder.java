@@ -43,7 +43,7 @@ public abstract class PacketBuilder {
         }
 
         public IdentifiedPacket next() {
-            return new IdentifiedPacket(packetId, length.getShort());
+            return new IdentifiedPacket(packetId, ((ByteBuffer) length.rewind()).getShort());
         }
 
     }
@@ -65,7 +65,7 @@ public abstract class PacketBuilder {
         }
 
         public Packet create() {
-            return PacketSerializer.createPacket(packetId, data);
+            return PacketSerializer.createPacket(packetId, (ByteBuffer) data.rewind());
         }
 
     }

@@ -38,7 +38,6 @@ public abstract class PacketBuilder {
         @Override
         public boolean put(byte b) {
             length.put(b);
-            System.out.println(length.position());
             return length.position() >= 2;
         }
 

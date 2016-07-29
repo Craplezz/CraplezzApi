@@ -18,11 +18,11 @@ public abstract class Packet {
 
 	public abstract byte getPacketId();
 
-	public ByteBuffer toBuffer() {
+	public final ByteBuffer toBuffer() {
 		ByteBuffer packetBuffer = internalToBuffer();
 		ByteBuffer byteBuffer = ByteBuffer.allocate(3 + packetBuffer.position());
 		System.out.println("Buffer position: " + packetBuffer.position());
-		byteBuffer.put(getPacketId()).putShort((short) packetBuffer.position()).put(byteBuffer);
+		byteBuffer.put(getPacketId()).putShort((short) packetBuffer.position()).put(packetBuffer);
 		return byteBuffer;
 	}
 

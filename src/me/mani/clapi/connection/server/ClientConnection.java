@@ -53,12 +53,14 @@ public class ClientConnection {
 	}
 	
 	public void sendPacket(Packet packet) {
-		try {
-			outputWriter.write(packet.toBuffer().array());
-			outputWriter.flush();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		service.execute(() -> {
+			try {
+				outputWriter.write(packet.toBuffer().array());
+				outputWriter.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	private void handlePacket(Packet packet) {

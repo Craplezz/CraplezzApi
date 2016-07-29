@@ -28,7 +28,7 @@ public abstract class PacketBuilder {
 
     public class IdentifiedEmptyPacket extends PacketBuilder {
 
-        private ByteBuffer length;
+        private ByteBuffer length = ByteBuffer.allocate(2);
         private byte packetId;
 
         public IdentifiedEmptyPacket(byte packetId) {

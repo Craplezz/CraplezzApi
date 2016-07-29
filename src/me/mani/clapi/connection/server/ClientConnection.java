@@ -42,6 +42,7 @@ public class ClientConnection {
 			try (Socket ignored = this.socket) {
 				byte b;
 				while ((b = (byte) inputReader.read()) != -1) {
+					System.out.println("Receiving data piece: " + b);
 					packetStream.write(b);
 				}
 			}

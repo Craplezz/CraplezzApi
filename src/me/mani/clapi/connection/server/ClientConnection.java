@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -55,8 +54,7 @@ public class ClientConnection {
 	
 	public void sendPacket(Packet packet) {
 		try {
-			ByteBuffer buffer = packet.toBuffer();
-			outputWriter.write(buffer.array());
+			outputWriter.write(packet.toBuffer().array());
 			outputWriter.flush();
 		} catch (IOException e) {
 			e.printStackTrace();

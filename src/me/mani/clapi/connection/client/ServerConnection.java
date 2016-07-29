@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -41,6 +43,7 @@ public class ServerConnection {
 			try (Socket ignored = this.socket) {
 				byte b;
 				while ((b = (byte) inputReader.read()) != -1) {
+					System.out.println("RECEIVED " + b);
 					packetStream.write(b);
 				}
 			}
@@ -58,6 +61,8 @@ public class ServerConnection {
 	
 	public void sendPacket(Packet packet) {
 		try {
+			ByteBuffer buffer = packet.toBuffer();
+			System.out.println("SENDED " + Arrays.toString(buffer.array()));
 			outputWriter.write(packet.toBuffer().array());
 			outputWriter.flush();
 		} catch (IOException e) {

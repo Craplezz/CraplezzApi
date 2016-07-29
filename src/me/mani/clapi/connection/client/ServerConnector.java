@@ -15,6 +15,8 @@ public class ServerConnector extends Thread {
 	public void run() {
 		try {
 			Socket socket = new Socket(client.getHost(), client.getPort());
+			socket.setKeepAlive(true);
+			socket.setTcpNoDelay(true);
 			client.onConnect(new ServerConnection(client, socket));
 		} catch (IOException e) {
 			e.printStackTrace();

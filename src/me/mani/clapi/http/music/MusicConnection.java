@@ -11,10 +11,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.http.entity.ContentType;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
@@ -88,7 +85,7 @@ public class MusicConnection extends HttpConnection {
                 e.printStackTrace();
             }
         });
-        cachedTrackList = new HashMap<>();
+        cachedTrackList = new LinkedHashMap<>();
         for (Track track : trackList)
             cachedTrackList.put(track.getUuid(), track);
         return trackList;
@@ -226,6 +223,7 @@ public class MusicConnection extends HttpConnection {
     }
 
     public void pushTrackPlay(String trackId) {
+        System.out.println(trackId);
         executeAsync(new PostRequest(url(url, MusicRequests.PLAYBACK_PLAY_FILE, enabledInstances.get(0), trackId)).withAuth(token).build(), (httpResponse) -> {});
     }
 

@@ -47,7 +47,7 @@ public class Playlist {
     public static Playlist tempPlaylist(List<Track> tracks) {
         Playlist playlist = new Playlist();
         playlist.uuid = UUID.randomUUID().toString();
-        playlist.name = "Templist";
+        playlist.name = "temp";
         playlist.tracks = tracks;
         playlist.entries = new ArrayList<>();
         for (Track track : tracks)

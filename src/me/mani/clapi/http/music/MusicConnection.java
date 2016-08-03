@@ -223,7 +223,6 @@ public class MusicConnection extends HttpConnection {
     }
 
     public void pushTrackPlay(String trackId) {
-        System.out.println(trackId);
         executeAsync(new PostRequest(url(url, MusicRequests.PLAYBACK_PLAY_FILE, enabledInstances.get(0), trackId)).withAuth(token).build(), (httpResponse) -> {});
     }
 
